@@ -1,0 +1,50 @@
+:root {
+  --blue: #325d79;
+  --white: #fefefe;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  font-family: "Open Sans", sans-serif;
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  text-align: center;
+}
+
+nav {
+  background-color: var(--blue);
+  color: var(--white);
+  min-height: 2.5rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 2.5rem;
+  font-variant: all-small-caps;
+  letter-spacing: 0.1rem;
+  margin: 0;
+}
+
+nav ul li {
+  margin: 0 1em;
+}
+
+nav ul a:first-child {
+  margin-right: auto;
+}
+
+nav ul a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+nav ul a:hover {
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+}
