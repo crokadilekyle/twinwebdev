@@ -43,7 +43,11 @@ class App extends Component {
                 key={i}
                 path={`/${item.title.replace(" ", "_").toLowerCase()}`}
               >
-                <Webapps item={item.title} label={item.type_label} />
+                <Webapps
+                  item={item.title}
+                  label={item.type_label}
+                  id={item.object_id}
+                />
               </Route>
             ))}
             {/* <Route exact path="/">

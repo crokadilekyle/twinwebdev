@@ -15,9 +15,10 @@ export default class Webapps extends Component {
     if (this.props.label === "Page") {
       axios
         .get(
-          `https://twinwebdev.com/wp-json/wp/v2/pages/${this.props.item
-            .replace(" ", "_")
-            .toLowerCase()}?_fields=title,link,content`
+          `https://twinwebdev.com/wp-json/wp/v2/pages/${parseInt(
+            this.props.id,
+            10
+          )}?_fields=title,link,content`
         )
         .then(res =>
           this.setState({
