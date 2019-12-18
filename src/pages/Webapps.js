@@ -11,24 +11,43 @@ export default class Webapps extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get(
-        "https://twinwebdev.com/wp-json/wp/v2/web_application?_fields=title,link,content"
-      )
-      .then(res =>
-        this.setState({
-          data: res.data,
-          isLoaded: true
-        })
-      )
-      .catch(err => console.log(err));
+    console.log(this.props.item);
+    if (this.props.label === "Page") {
+      axios
+        .get(
+          `https://twinwebdev.com/wp-json/wp/v2/pages/${this.props.item
+            .replace(" ", "_")
+            .toLowerCase()}?_fields=title,link,content`
+        )
+        .then(res =>
+          this.setState({
+            data: res.data,
+            isLoaded: true
+          })
+        )
+        .catch(err => console.log(err));
+    } else {
+      axios
+        .get(
+          `https://twinwebdev.com/wp-json/wp/v2/${this.props.item
+            .replace(" ", "_")
+            .toLowerCase()}?_fields=title,link,content`
+        )
+        .then(res =>
+          this.setState({
+            data: res.data,
+            isLoaded: true
+          })
+        )
+        .catch(err => console.log(err));
+    }
   }
 
   render() {
     if (this.state.isLoaded) {
       return (
         <div>
-          <h1>Web Applications</h1>
+          <h1>{this.props.item}</h1>
 
           {this.state.data.map((item, i) => {
             return (
