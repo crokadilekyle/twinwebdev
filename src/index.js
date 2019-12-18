@@ -46,7 +46,7 @@ class App extends Component {
                 <Webapps
                   item={item.title}
                   label={item.type_label}
-                  id={item.object_id}
+                  id={parseInt(item.object_id)}
                 />
               </Route>
             ))}

@@ -8,7 +8,9 @@ export default class Nav extends Component {
   };
   componentDidMount() {
     axios
-      .get("https://twinwebdev.com/wp-json/wp/v2/pages/31")
+      .get(
+        "https://twinwebdev.com/wp-json/wp/v2/pages/29?_fields=title,content"
+      )
       .then(res =>
         this.setState(
           {

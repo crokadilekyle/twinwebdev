@@ -6,23 +6,24 @@ export default class Webapps extends Component {
     super(props);
     this.state = {
       data: [],
+      // pageData: {},
       isLoaded: false
     };
   }
 
   componentDidMount() {
-    console.log(this.props.item);
+    console.log(this.props.label);
     if (this.props.label === "Page") {
+      // console.log(typeof(parseInt(this.props.id)))
       axios
         .get(
-          `https://twinwebdev.com/wp-json/wp/v2/pages/${parseInt(
-            this.props.id,
-            10
-          )}?_fields=title,link,content`
+          `https://twinwebdev.com/wp-json/wp/v2/pages/${
+            this.props.id
+          }?_fields=title,content`
         )
         .then(res =>
           this.setState({
-            data: res.data,
+            pageData: res.data,
             isLoaded: true
           })
         )
@@ -45,7 +46,18 @@ export default class Webapps extends Component {
   }
 
   render() {
-    if (this.state.isLoaded) {
+    if (this.state.pageData && this.state.isLoaded) {
+      return (
+        <div>
+          <h1>{this.state.pageData.title.rendered}</h1>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: this.state.pageData.content.rendered
+            }}
+          />
+        </div>
+      );
+    } else if (this.state.data && this.state.isLoaded) {
       return (
         <div>
           <h1>{this.props.item}</h1>
@@ -54,12 +66,12 @@ export default class Webapps extends Component {
             return (
               <div key={i}>
                 <h2>{item.title.rendered}</h2>
-                <p
+                <div
                   dangerouslySetInnerHTML={{ __html: item.content.rendered }}
                 />
-                <p>
+                {/* <p>
                   <a href={item.link}>See More</a>
-                </p>
+                </p> */}
               </div>
             );
           })}
